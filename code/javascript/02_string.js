@@ -1,5 +1,5 @@
 var apellido = 'Cruz'
-var nombre= 'Galo' , apellido 'cruz'
+var nombre= 'Galo' 
 
 var nombreMayusculas = nombre.toUpperCase()
 
