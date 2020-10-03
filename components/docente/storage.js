@@ -1,37 +1,37 @@
-[19:21, 2/10/2020] Michael Reyes: const model = require('./model')
+const model = require('./model')
 
-function addEstudiante( objeto ) {
-    const estudiante = new model( objeto )
-    estudiante.save()
+function addDocente( objeto ) {
+    const docente = new model( objeto )
+    docente.save()
 }
 
-async function getEstudiantes( filtroEstudiante ) {
+async function getDocentes( filtroDocente ) {
     let filtro = {}
-    if (filtroEstudiante != null) {
-        filtro = { cedula : filtroEstudiante }
+    if (filtroDocente != null) {
+        filtro = { nombre : filtroDocente }
     }
-    const estudianteList = await model.find( filtro )
-    return estudianteList
+    const docenteList = await model.find( filtro )
+    return docenteList
 }
 
-async function updateEstudiante( idEstudiante, objeto ) {
-    const foundEstudiante = await model.findOne({ _id: idEstudiante })
+async function updateDocente( idDocente, objeto ) {
+    const foundDocente = await model.findOne({ _id: idDocente })
 
-    foundEstudiante.cedula = objeto.cedula
-    foundEstudiante.nombre = objeto.nombre
-    foundEstudiante.apellido = objeto.apellido
+    foundDocente.nombre = objeto.nombre
+    foundDocente.apellido = objeto.apellido
+    foundDocente.correo_electronico = objeto.correo_electronico
 
-    const result = await foundEstudiante.save()
+    const result = await foundDocente.save()
     return result
 }
 
-function deleteEstudiante(idEstudiante) {
-    return model.deleteOne({ _id: idEstudiante })
+function deleteDocente(idDocente) {
+    return model.deleteOne({ _id: idDocente })
 }
 
 module.exports = {
-    add: addEstudiante,
-    get: getEstudiantes,
-    update: updateEstudiante,
-    delete: deleteEstudiante,
+    add: addDocente,
+    get: getDocentes,
+    update: updateDocente,
+    delete: deleteDocente,
 }
